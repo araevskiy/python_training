@@ -1,10 +1,10 @@
 class ContactHelper:
 
-    def __init__(self, app2):
-        self.app2= app2
+    def __init__(self, app):
+        self.app= app
 
-    def create_contact(self, contact):
-        wd = self.app2.wd
+    def create(self, contact):
+        wd = self.app.wd
         # init new contact
         wd.find_element_by_link_text("add new").click()
         # fill contact form
@@ -20,7 +20,7 @@ class ContactHelper:
 
 
     def delete_first_contact(self):
-        wd = self.app2.wd
+        wd = self.app.wd
         # select contact
         wd.find_element_by_name("selected[]").click()
         # submit deletion
@@ -29,7 +29,7 @@ class ContactHelper:
 
 
     def return_to_homepage(self):
-        wd = self.app2.wd
+        wd = self.app.wd
         # return to homepage
         wd.find_element_by_link_text("home page").click()
 
