@@ -18,6 +18,22 @@ class ContactHelper:
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.return_to_homepage()
 
+    def logout(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("Logout").click()
+        wd.find_element_by_name("user")
+
+    def modify_contact(self,contact):
+        wd = self.app.wd
+        wd.find_element_by_xpath("(//img[@alt='Edit'])[2]").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(contact.secondname)
+        wd.find_element_by_name("update").click()
+
 
     def delete_first_contact(self):
         wd = self.app.wd
