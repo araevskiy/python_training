@@ -24,6 +24,8 @@ class ContactHelper:
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
         wd.find_element_by_name("middlename").send_keys(contact.secondname)
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
 
     def logout(self):
         wd = self.app.wd
@@ -66,10 +68,10 @@ class ContactHelper:
         i = 1
         for element in wd.find_elements_by_name("entry"):
             i = i + 1
-            secondname = element.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]").text
+            lastname = element.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]").text
             firstname = element.find_element_by_xpath("//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[3]").text
             id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact(secondname=secondname, firstname=firstname, id=id))
+            contacts.append(Contact(lastname=lastname, firstname=firstname, id=id))
         return contacts
 
 
