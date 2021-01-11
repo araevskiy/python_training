@@ -5,7 +5,7 @@ from sys import maxsize
 
 def test_add_contacts(app):
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(firstname="Aleу", secondname="RY",lastname="gg")
+    contact = Contact(firstname="Aleу", secondname="RY",lastname="gg",homephone="33333", mobilephone="2222", workphone="1111",secondaryphone="555555", email="aeg5@mail.ru", email2="123592@mail.ru", email3="sasha1992@mail.ru",address="Moscow")
     app.contact.create(contact)
     assert len(old_contacts) + 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
@@ -15,7 +15,7 @@ def test_add_contacts(app):
 
 def test_add_contacts2(app):
    old_contacts = app.contact.get_contact_list()
-   contact = Contact(firstname="Anton", secondname="Matros",lastname="gg")
+   contact = Contact(firstname="Anton", secondname="Matros",lastname="gg",homephone="33333", mobilephone="2222", workphone="1111",secondaryphone="555555", email="aeg5@mail.ru", email2="123592@mail.ru", email3="sasha1992@mail.ru",address="NY")
    app.contact.create(contact)
    new_contacts = app.contact.get_contact_list()
    assert len(old_contacts) + 1 == len(new_contacts)
