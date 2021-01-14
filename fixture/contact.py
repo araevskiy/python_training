@@ -52,6 +52,9 @@ class ContactHelper:
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
         wd.find_element_by_name("address").send_keys(contact.address)
+        wd.find_element_by_name("address2").click()
+        wd.find_element_by_name("address2").clear()
+        wd.find_element_by_name("address2").send_keys(contact.secondaddress)
 
     def logout(self):
         wd = self.app.wd
@@ -138,6 +141,7 @@ class ContactHelper:
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
         lastname = wd.find_element_by_name("lastname").get_attribute("value")
         address = wd.find_element_by_name("address").get_attribute("value")
+        secondaddress = wd.find_element_by_name("address2").get_attribute("value")
         email = wd.find_element_by_name("email").get_attribute("value")
         email2 = wd.find_element_by_name("email2").get_attribute("value")
         email3 = wd.find_element_by_name("email3").get_attribute("value")
@@ -145,7 +149,7 @@ class ContactHelper:
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
-        return Contact(id=id, firstname=firstname, lastname=lastname, address=address,
+        return Contact(id=id, firstname=firstname, lastname=lastname, address=address,secondaddress=secondaddress,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone,
                        email=email, email2=email2, email3=email3)
 
