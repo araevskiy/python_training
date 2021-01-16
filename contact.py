@@ -18,9 +18,9 @@ class ContactHelper:
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
-        wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(contact.secondname)
+        wd.find_element_by_name("secondname").click()
+        wd.find_element_by_name("secondname").clear()
+        wd.find_element_by_name("secondname").send_keys(contact.secondname)
 
     def logout(self):
         wd = self.app.wd
