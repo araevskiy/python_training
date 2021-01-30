@@ -1,11 +1,20 @@
+from selenium.webdriver.support.select import Select
+from fixture.db import DbFixture
+from fixture.orm import ORMFixture
 from model.contact import Contact
 import re
+from selenium.webdriver.common.by import By
 
 
 class ContactHelper:
 
     def __init__(self, app):
         self.app = app
+
+    def open_home_page(self):
+        wd = self.app.wd
+        if not (wd.current_url.endswith("/addressbook") and len(wd.find_element_by_link_text("Last name")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def create(self, contact):
         wd = self.app.wd
@@ -80,6 +89,24 @@ class ContactHelper:
         wd.find_element_by_name("update").click()
         self.contact_cache = None
 
+    def add_contact_in_group_by_id(self, id_contact, id_group):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_css_selector("input[value='%s']" % id_contact).click()
+        wd.find_element_by_name("to_group").click()
+        Select(wd.find_element_by_xpath("//select[@name='to_group']")).select_by_value(id_group)
+        wd.find_element_by_name("add").click()
+        self.contact_cache = None
+
+    def del_contact_from_group_by_id(self, id_contact, id_group):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_name("group").click()
+        Select(wd.find_element_by_xpath("//select[@name='group']")).select_by_value(id_group)
+        wd.find_element_by_css_selector("input[value='%s']" % id_contact).click()
+        wd.find_element_by_name("remove").click()
+        self.contact_cache = None
+
     def modify_contact_by_index(self, index, contact):
         wd = self.app.wd
         self.open_contact_for_edit_by_index(index)
@@ -116,6 +143,12 @@ class ContactHelper:
         wd.find_element_by_link_text("home").click()
         self.contact_cache = None
 
+    def select_none(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        Select(wd.find_element_by_name("group")).select_by_visible_text("[none]")
+        wd.find_element_by_xpath("//option[@value='[none]']").click()
+
 
     def return_to_homepage(self):
         wd = self.app.wd
@@ -128,6 +161,17 @@ class ContactHelper:
         self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    def count_contacts_in_group(self):
+        wd = self.app.wd
+        self.return_to_homepage()
+        self.select_none()
+        return len(wd.find_elements_by_name("selected[]"))
+
+    def count_contacts_not_in_group(self):
+        wd = self.app.wd
+        self.return_to_homepage()
+        return len(wd.find_elements_by_name("selected[]"))
+
     contact_cache = None
 
     def get_contact_list(self):
@@ -135,6 +179,8 @@ class ContactHelper:
             wd = self.app.wd
             self.app.open_home_page()
             self.contact_cache = []
+            wd.find_element_by_name("group").click()
+            Select(wd.find_element_by_name("group")).select_by_visible_text("[all]")
             for row in wd.find_elements_by_name("entry"):
                 cells = row.find_elements_by_tag_name("td")
                 id = row.find_element_by_name("selected[]").get_attribute("value")
@@ -162,7 +208,7 @@ class ContactHelper:
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
-        return Contact(id=id, firstname=firstname, lastname=lastname, address=address,secondaddress=secondaddress,
+        return Contact(identifer=id, firstname=firstname, lastname=lastname, address=address,secondaddress=secondaddress,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone,
                        email=email, email2=email2, email3=email3)
 
