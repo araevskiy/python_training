@@ -125,6 +125,11 @@ class ContactHelper:
         self.app.open_home_page()
         wd.find_element_by_css_selector("a[href='edit.php?id=" + str(id) + "']").click()
 
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.open_home_page()
+        wd.find_element_by_xpath("(// img[@ alt='Details'])[" + str(index + 1) + "]").click()
+
     def open_contact_for_view_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
@@ -208,20 +213,28 @@ class ContactHelper:
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
-        return Contact(identifer=id, firstname=firstname, lastname=lastname, address=address,secondaddress=secondaddress,
+        return Contact(id=id, firstname=firstname, lastname=lastname, address=address,secondaddress=secondaddress,
                        homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone,
                        email=email, email2=email2, email3=email3)
 
+    @staticmethod
+    def search_in_text(search_text, text):
+        search_result = re.search(search_text, text)
+        if search_result is not None:
+            return search_result.group(1)
+        else:
+            return ''
+
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
-        self.open_contact_for_view_by_index(index)
+        self.open_contact_view_by_index(index)
         text = wd.find_element_by_id("content").text
-        homephone = re.search("H: (.*)", text).group(1)
-        mobilephone = re.search("M: (.*)", text).group(1)
-        workphone = re.search("W: (.*)", text).group(1)
-        secondaryphone = re.search("P: (.*)", text).group(1)
-        return Contact(homephone=homephone, mobilephone=mobilephone,
-                       workphone=workphone, secondaryphone=secondaryphone)
+        homephone = self.search_in_text("H: (.*)", text)
+        workphone = self.search_in_text("W: (.*)", text)
+        mobilephone = self.search_in_text("M: (.*)", text)
+        secondaryphone = self.search_in_text("P: (.*)", text)
+        return Contact(homephone=homephone, workphone=workphone, mobilephone=mobilephone,
+                       secondaryphone=secondaryphone)
 
 
 
