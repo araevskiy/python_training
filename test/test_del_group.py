@@ -13,7 +13,7 @@ def test_delete_some_group(app, db, check_ui):
     with allure.step('Given a random group from the list'):
         group = random.choice(old_groups)
     with allure.step('When I delete the group %s from the list' % group):
-        app.group.delete_group_by_id(group.identifier)
+        app.group.delete_group_by_id(group.id)
     with allure.step('Then the new group list is equal to the old list without the deleted group'):
         assert len(old_groups) - 1 == app.group.count()
         new_groups = db.get_group_list()

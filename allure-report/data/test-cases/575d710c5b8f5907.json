@@ -1,0 +1,247 @@
+{
+  "uid" : "575d710c5b8f5907",
+  "name" : "test_add_contact_in_group",
+  "fullName" : "test.test_add_contact_in_group#test_add_contact_in_group",
+  "historyId" : "573a25813011d82427453b445fb1edab",
+  "time" : {
+    "start" : 1613232652450,
+    "stop" : 1613232653030,
+    "duration" : 580
+  },
+  "status" : "broken",
+  "statusMessage" : "AttributeError: 'Contact' object has no attribute 'identifier'",
+  "statusTrace" : "app = <fixture.application.Application object at 0x0000019DC86F81D0>\norm = <fixture.orm.ORMFixture object at 0x0000019DC85B66D8>, check_ui = False\n\n    def test_add_contact_in_group(app, orm, check_ui):\n        with allure.step('Given a non-empty contact list'):\n            if app.contact.count() == 0:\n               app.contact.create(Contact(firstname=\"A8888l6\", secondname=\"Rs88\", lastname=\"81\", homephone=\"33333\", mobilephone=\"2222\",\n                          workphone=\"1111\", secondaryphone=\"555555\", email=\"aeg5@mail.ru\", email2=\"123592@mail.ru\",\n                          email3=\"sasha1992@mail.ru\", address=\"LasVegas\"))\n            contacts = orm.get_contact_list()\n            with allure.step('Given a non-empty group list'):\n                if app.group.count() == 0:\n                    app.group.create(Group(name='Test'))\n                groups = orm.get_group_list()\n            if orm.all_contacts_in_all_groups(groups):\n                app.group.create(Group(name='Test'))\n        with allure.step('Given a random contact from the list'):\n            edit_contact = random.choice(contacts)\n        with allure.step('Given a random group from the list'):\n            add_group_to_contact = random.choice(groups)\n        with allure.step('When I add contact %s in group %s from the list' % (edit_contact, add_group_to_contact)):\n>           app.contact.add_contact_in_group_by_id(edit_contact.identifier, add_group_to_contact.identifier)\nE           AttributeError: 'Contact' object has no attribute 'identifier'\n\ntest\\test_add_contact_in_group.py:25: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "db",
+    "time" : {
+      "start" : 1613232644899,
+      "stop" : 1613232644905,
+      "duration" : 6
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "check_ui",
+    "time" : {
+      "start" : 1613232652448,
+      "stop" : 1613232652448,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1613232644982,
+      "stop" : 1613232652448,
+      "duration" : 7466
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "orm",
+    "time" : {
+      "start" : 1613232644905,
+      "stop" : 1613232644982,
+      "duration" : 77
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "stop",
+    "time" : {
+      "start" : 1613232644905,
+      "stop" : 1613232644905,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "AttributeError: 'Contact' object has no attribute 'identifier'",
+    "statusTrace" : "app = <fixture.application.Application object at 0x0000019DC86F81D0>\norm = <fixture.orm.ORMFixture object at 0x0000019DC85B66D8>, check_ui = False\n\n    def test_add_contact_in_group(app, orm, check_ui):\n        with allure.step('Given a non-empty contact list'):\n            if app.contact.count() == 0:\n               app.contact.create(Contact(firstname=\"A8888l6\", secondname=\"Rs88\", lastname=\"81\", homephone=\"33333\", mobilephone=\"2222\",\n                          workphone=\"1111\", secondaryphone=\"555555\", email=\"aeg5@mail.ru\", email2=\"123592@mail.ru\",\n                          email3=\"sasha1992@mail.ru\", address=\"LasVegas\"))\n            contacts = orm.get_contact_list()\n            with allure.step('Given a non-empty group list'):\n                if app.group.count() == 0:\n                    app.group.create(Group(name='Test'))\n                groups = orm.get_group_list()\n            if orm.all_contacts_in_all_groups(groups):\n                app.group.create(Group(name='Test'))\n        with allure.step('Given a random contact from the list'):\n            edit_contact = random.choice(contacts)\n        with allure.step('Given a random group from the list'):\n            add_group_to_contact = random.choice(groups)\n        with allure.step('When I add contact %s in group %s from the list' % (edit_contact, add_group_to_contact)):\n>           app.contact.add_contact_in_group_by_id(edit_contact.identifier, add_group_to_contact.identifier)\nE           AttributeError: 'Contact' object has no attribute 'identifier'\n\ntest\\test_add_contact_in_group.py:25: AttributeError",
+    "steps" : [ {
+      "name" : "Given a non-empty contact list",
+      "time" : {
+        "start" : 1613232652451,
+        "stop" : 1613232653030,
+        "duration" : 579
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Given a non-empty group list",
+        "time" : {
+          "start" : 1613232652795,
+          "stop" : 1613232653021,
+          "duration" : 226
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "hasContent" : false,
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "hasContent" : true,
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Given a random contact from the list",
+      "time" : {
+        "start" : 1613232653030,
+        "stop" : 1613232653030,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "hasContent" : false,
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "Given a random group from the list",
+      "time" : {
+        "start" : 1613232653030,
+        "stop" : 1613232653030,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "hasContent" : false,
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0
+    }, {
+      "name" : "When I add contact 4:firstnameg0X)QOj&:lastnamesyn;Qotk-U :None:None:None in group 3:name6B#Bc i:headerrldZ% $T)a4A:footeraG%zy# from the list",
+      "time" : {
+        "start" : 1613232653030,
+        "stop" : 1613232653030,
+        "duration" : 0
+      },
+      "status" : "broken",
+      "statusMessage" : "AttributeError: 'Contact' object has no attribute 'identifier'\n",
+      "statusTrace" : "  File \"C:\\Users\\1395371\\DD\\test\\test_add_contact_in_group.py\", line 25, in test_add_contact_in_group\n    app.contact.add_contact_in_group_by_id(edit_contact.identifier, add_group_to_contact.identifier)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "hasContent" : true,
+      "shouldDisplayMessage" : true,
+      "attachmentsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "hasContent" : true,
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 0
+  },
+  "afterStages" : [ {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1613232653838,
+      "stop" : 1613232653839,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  }, {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1613232653085,
+      "stop" : 1613232653837,
+      "duration" : 752
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "test"
+  }, {
+    "name" : "suite",
+    "value" : "test_add_contact_in_group"
+  }, {
+    "name" : "host",
+    "value" : "LAPTOP-F7DMISNI"
+  }, {
+    "name" : "thread",
+    "value" : "9144-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test.test_add_contact_in_group"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "575d710c5b8f5907.json",
+  "parameterValues" : [ ]
+}
